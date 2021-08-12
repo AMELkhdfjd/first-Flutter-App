@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print, camel_case_types
 
 import 'package:flutter/material.dart';
 
@@ -55,9 +55,33 @@ Widget build(BuildContext context){
             Container(
               width: double.infinity,
               height: 250,
-              backgroundColor: Colors.purple,
+              child: Image.network(
+                "https://github.com/ptyagicodecamp/educative_flutter/raw/profile_1/assets/profile.jpg?raw=true",
+                fit: BoxFit.cover,
+              ),
 
-            )
+            ),
+               Container(
+             
+              height: 250,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children:  <Widget>[
+                  Padding
+                  (padding: const EdgeInsets.all(8.0),
+                  child:  Text(
+                      "Priyanka Tyagi",
+                      style: TextStyle(fontSize: 30),
+                   ),
+                  )
+                 
+                ],
+                )
+               
+              ),
+
+            
+
           ],
         
         )
