@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const  MyApp());
+  runApp(const  AmelApp());
 }
 
-class MyApp extends StatefulWidget{
-const MyApp({Key? key}) : super(key: key);
+class AmelApp extends StatefulWidget{
+const AmelApp({Key? key}) : super(key: key);
 
 @override
 _helloFlutterStateApp createState() => _helloFlutterStateApp();
@@ -17,7 +17,7 @@ _helloFlutterStateApp createState() => _helloFlutterStateApp();
 String english = "Salut Amel !";
 String spanish = "Salut Hocine heey";
 
-class _helloFlutterStateApp extends State<MyApp>{
+class _helloFlutterStateApp extends State<AmelApp>{
   //Dephault greeting is in english
 String displaytext = english;
 @override
@@ -26,34 +26,49 @@ Widget build(BuildContext context){
     debugShowCheckedModeBanner: false,
     home: Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text("hello flutter app"),
-        leading: Icon(Icons.home),
+        leading: Icon(
+          Icons.arrow_back,
+          color: Colors.white,
+          ),
         actions : <Widget>[
           IconButton(
          
-             icon: Icon(Icons.refresh),
+             icon: Icon(Icons.star),
                 onPressed: (){
-                  setState(() {
-                    displaytext =
-                    displaytext == english ?
-                        spanish
-                      : english;
-                  });
+                 
+                   print("the contact is starred");
+                
                 },
           )
         ],
         
         ),
-      body: Center(
-        child: Text(
-          displaytext,
-          style:TextStyle(fontSize: 30, fontWeight: FontWeight.normal)
-        ),
+      body: ListView(
+        //listView has multiple children widget
+      children : <Widget>[
+        //use column widget to align widgets vertically
+        //Setting the width property to double.infinity, will make it stretch horizontally to take up all the available space of its parent widget.
+        Column(
+          children : <Widget>[
+            Container(
+              width: double.infinity,
+              height: 250,
+              backgroundColor: Colors.purple,
+
+            )
+          ],
+        
+        )
+      ],
+      ),
+       
       ),
     
-    ),
+    );
 
-  );
+
 
 }
 
