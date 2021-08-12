@@ -15,7 +15,7 @@ _helloFlutterStateApp createState() => _helloFlutterStateApp();
 
 }
 String english = "Salut Amel !";
-String spanish = "coucou";
+String spanish = "Salut Hocine heey";
 
 class _helloFlutterStateApp extends State<MyApp>{
   //Dephault greeting is in english
@@ -47,7 +47,7 @@ Widget build(BuildContext context){
       body: Center(
         child: Text(
           displaytext,
-          style:TextStyle(fontSize: 30),
+          style:TextStyle(fontSize: 30, fontWeight: FontWeight.normal)
         ),
       ),
     
