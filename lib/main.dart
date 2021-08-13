@@ -11,6 +11,7 @@ const AmelApp({Key? key}) : super(key: key);
 
 @override
 _helloFlutterStateApp createState() => _helloFlutterStateApp();
+
  
 
 }
@@ -27,8 +28,8 @@ Widget build(BuildContext context){
     home: Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text("hello flutter app"),
-        leading: Icon(
+          title: Text("hello flutter app"),
+          leading: Icon(
           Icons.arrow_back,
           color: Colors.white,
           ),
@@ -61,14 +62,15 @@ Widget build(BuildContext context){
               ),
 
             ),
-               Container(
+               
+              Container(
              
-              height: 250,
+              height: 60,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children:  <Widget>[
-                  Padding
-                  (padding: const EdgeInsets.all(8.0),
+                  Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child:  Text(
                       "Priyanka Tyagi",
                       style: TextStyle(fontSize: 30),
@@ -79,6 +81,16 @@ Widget build(BuildContext context){
                 )
                
               ),
+              Container(
+                margin: const EdgeInsets.only(top : 8, bottom: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                  children: <Widget>[
+
+                ],
+                )
+              )
 
             
 
