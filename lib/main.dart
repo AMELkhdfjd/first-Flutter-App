@@ -23,22 +23,8 @@ Widget build(BuildContext context){
     //! the global : we use theme: ThemeData()
     //! the local : we use child : Theme(.....) then add child: ProfileActionItems(),
 
-    //NEW CODE: theme property to set the global theme
-      theme: ThemeData(
-        // Define the default brightness and colors for the overall app.
-        brightness: Brightness.light,
-        appBarTheme: AppBarTheme(
-          //CHALLENGE: Try a different color
-           backgroundColor: Colors.purple,
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-        ),
-        iconTheme: IconThemeData(
-          color: Colors.indigo.shade800,
-        ),
-      ),
-
+   
+    theme : MyAppTheme.apptheme(),
     home: Scaffold(
       appBar: AppBar(
        
@@ -95,22 +81,13 @@ Widget build(BuildContext context){
                 )
                
               ),
-              Container(
-                margin: const EdgeInsets.only(top : 8, bottom: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                  children: <Widget>[
-
-                ],
-                )
-              ),
-              Container(
+              
+              Container( //? the theme here is not working
                 margin: const EdgeInsets.only(top: 8, bottom : 8),
                 child : Theme(
                   data: ThemeData(
                     iconTheme : IconThemeData(
-                      color: Colors.black,
+                     color: Colors.yellow,
                     ),
                   ),
                   
@@ -320,6 +297,30 @@ Widget AdressListTile(){
        color: Colors.indigo.shade500,
        )
   );
+}
+//*Adding the theme of the body
+class MyAppTheme{
+  static ThemeData apptheme(){
+  
+    return ThemeData(
+       //NEW CODE: theme property to set the global theme
+      
+        // Define the default brightness and colors for the overall app.
+        brightness: Brightness.dark,
+        appBarTheme: AppBarTheme(
+          //CHALLENGE: Try a different color
+           backgroundColor: Colors.purple,
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+        ),
+       iconTheme: IconThemeData(
+       color: Colors.orange,
+     ),
+    
+    
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {
