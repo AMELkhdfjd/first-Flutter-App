@@ -90,11 +90,24 @@ Widget build(BuildContext context){
 
                 ],
                 )
-              )
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 8, bottom : 8),
+                child : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    buildCallButton(),
+                    buildTextButton(),
+                    buildVideoCallButton(), 
+                    buildEmailButton(),
+                    buildDirectionButton(),
+                    buildPayButton(),
 
-            
+                ],
+                ),
 
-          ],
+              ),
+           ],
         
         )
       ],
@@ -110,6 +123,106 @@ Widget build(BuildContext context){
 
 
 
+}
+Widget buildCallButton(){
+  return Column(
+    children: <Widget>[
+      IconButton(
+        icon: Icon(
+          //! don't add this when we have the .message "Icons.call,"
+         Icons.call,
+          color:Colors.indigo.shade800,
+          ),
+          onPressed:(){}
+          ),
+          Text("Call"),
+    ],
+  );
+}
+//*Adding the buildTextButton
+Widget buildTextButton(){
+
+  return Column(
+    children: <Widget>[
+      IconButton(
+        icon: Icon(
+          //! don't add this when we have the .message "Icons.call,"
+         Icons.message,
+          color:Colors.indigo.shade800,
+          ),
+          onPressed:(){}
+          ),
+          Text("Text"),
+    ],
+  );
+}
+
+//*Adding the buildVideoCallButton
+Widget buildVideoCallButton(){
+  return Column(
+    children: <Widget>[
+      IconButton(
+        icon: Icon(
+         
+         Icons.video_call,
+          color:Colors.indigo.shade800,
+          ),
+          onPressed:(){}
+          ),
+          Text("Video"),
+    ],
+  );
+}
+
+//*Adding the buildEmailButton
+Widget buildEmailButton(){
+  return Column(
+    children: <Widget>[
+      IconButton(
+        icon: Icon(
+         
+         Icons.email,
+          color:Colors.indigo.shade800,
+          ),
+          onPressed:(){}
+          ),
+          Text("Email"),
+    ],
+  );
+}
+
+//*Adding the buildDirectionButton
+Widget buildDirectionButton(){
+  return Column(
+    children: <Widget>[
+      IconButton(
+        icon: Icon(
+         
+         Icons.directions,
+          color:Colors.indigo.shade800,
+          ),
+          onPressed:(){}
+          ),
+          Text("Directions"),
+    ],
+  );
+}
+
+//*Adding the buildPayButton
+Widget buildPayButton(){
+  return Column(
+    children: <Widget>[
+      IconButton(
+        icon: Icon(
+         
+         Icons.payment,
+          color:Colors.indigo.shade800,
+          ),
+          onPressed:(){}
+          ),
+          Text("Pay"),
+    ],
+  );
 }
 
 
