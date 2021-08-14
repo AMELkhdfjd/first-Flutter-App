@@ -120,6 +120,16 @@ Widget build(BuildContext context){
                 color: Colors.grey,
 
               ),
+              EmailListTile(),
+               Divider(
+                color: Colors.grey,
+
+              ),
+             AdressListTile(),
+              Divider(
+                color: Colors.grey,
+
+              ),
 
            ],
         
@@ -267,7 +277,26 @@ Widget MobilePhoneListTile(){
   );
 }
 
-
+Widget EmailListTile(){
+  return ListTile(
+    leading: Icon(Icons.email),
+    title: Text("jsoenvfi@gmail.com"),
+    subtitle: Text("Work"),
+   
+  );
+}
+Widget AdressListTile(){
+  return ListTile(
+    leading: Icon(Icons.location_on),
+    title: Text("234 Su,set St, Burlingame"),
+    subtitle: Text("Home"),
+    trailing: IconButton(
+      onPressed: (){},
+       icon: Icon(Icons.message),
+       color: Colors.indigo.shade500,
+       )
+  );
+}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
