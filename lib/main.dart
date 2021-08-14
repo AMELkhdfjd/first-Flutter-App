@@ -104,9 +104,23 @@ Widget build(BuildContext context){
                     buildPayButton(),
 
                 ],
+
                 ),
 
               ),
+
+              //Adding the divider to separate sections
+              Divider(
+                color: Colors.grey,
+
+              ),
+            MobilePhoneListTile(),
+            otherPhoneListTile(),
+               Divider(
+                color: Colors.grey,
+
+              ),
+
            ],
         
         )
@@ -120,6 +134,7 @@ Widget build(BuildContext context){
 
 
 }
+
 
 
 
@@ -215,7 +230,7 @@ Widget buildPayButton(){
       IconButton(
         icon: Icon(
          
-         Icons.payment,
+         Icons.attach_money,
           color:Colors.indigo.shade800,
           ),
           onPressed:(){}
@@ -224,6 +239,34 @@ Widget buildPayButton(){
     ],
   );
 }
+
+//*the phone list number
+Widget otherPhoneListTile(){
+  return ListTile(
+    leading: Text(""),
+    title: Text("0727297398"),
+    subtitle: Text("other"),
+    trailing: IconButton(
+      onPressed: (){},
+       icon: Icon(Icons.message),
+       color: Colors.indigo.shade500,
+       )
+  );
+}
+
+Widget MobilePhoneListTile(){
+  return ListTile(
+    leading: Icon(Icons.call),
+    title: Text("0727297398"),
+    subtitle: Text("Mobile"),
+    trailing: IconButton(
+      onPressed: (){},
+       icon: Icon(Icons.message),
+       color: Colors.indigo.shade500,
+       )
+  );
+}
+
 
 
 class MyHomePage extends StatefulWidget {
