@@ -1,33 +1,47 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print, camel_case_types
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print, camel_case_types, non_constant_identifier_names, must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const  AmelApp());
+  runApp(  AmelApp());
 }
 
-class AmelApp extends StatefulWidget{
-const AmelApp({Key? key}) : super(key: key);
 
-@override
-_helloFlutterStateApp createState() => _helloFlutterStateApp();
-
- 
-
-}
 String english = "Salut Amel !";
 String spanish = "Salut Hocine heey";
+@override
+class AmelApp extends StatelessWidget{
 
-class _helloFlutterStateApp extends State<AmelApp>{
+
   //Dephault greeting is in english
 String displaytext = english;
 @override
 Widget build(BuildContext context){
-  return MaterialApp(
+  return MaterialApp (
     debugShowCheckedModeBanner: false,
+    //! The difference between the global and local theme is :
+    //! the global : we use theme: ThemeData()
+    //! the local : we use child : Theme(.....) then add child: ProfileActionItems(),
+
+    //NEW CODE: theme property to set the global theme
+      theme: ThemeData(
+        // Define the default brightness and colors for the overall app.
+        brightness: Brightness.light,
+        appBarTheme: AppBarTheme(
+          //CHALLENGE: Try a different color
+           backgroundColor: Colors.purple,
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.indigo.shade800,
+        ),
+      ),
+
     home: Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
+       
           title: Text("hello flutter app"),
           leading: Icon(
           Icons.arrow_back,
@@ -93,6 +107,15 @@ Widget build(BuildContext context){
               ),
               Container(
                 margin: const EdgeInsets.only(top: 8, bottom : 8),
+                child : Theme(
+                  data: ThemeData(
+                    iconTheme : IconThemeData(
+                      color: Colors.black,
+                    ),
+                  ),
+                  
+
+                
                 child : Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -105,6 +128,7 @@ Widget build(BuildContext context){
 
                 ],
 
+                ),
                 ),
 
               ),
@@ -127,7 +151,7 @@ Widget build(BuildContext context){
               ),
              AdressListTile(),
               Divider(
-                color: Colors.grey,
+                color: Colors.red
 
               ),
 
