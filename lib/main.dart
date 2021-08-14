@@ -1,6 +1,95 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print, camel_case_types, non_constant_identifier_names, must_be_immutable, use_key_in_widget_constructors
+// ignore_for_file: unnecessary_brace_in_string_interps, prefer_typing_uninitialized_variables, prefer_const_declarations, import_of_legacy_library_into_null_safe, unused_import
+
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+
+void main() => runApp(MoviesApp());
+
+//REPLACE: Replace YOUR_API_KEY with your API key
+final apiKey = "YOUR_API_KEY";
+
+class MoviesApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MoviesListing(),
+    );
+  }
+}
+
+class MoviesListing extends StatefulWidget {
+  @override
+  _MoviesListingState createState() => _MoviesListingState();
+}
+
+class _MoviesListingState extends State<MoviesListing> {
+  
+  //Variable to hold movies information
+  var movies;
+
+  //NOTE: Method to make http requests
+  static dynamic getJson() async {
+    
+    //URL to fetch movies information
+    final apiEndPoint =
+        "http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc";
+    final apiResponse = await http.get(apiEndPoint);
+    //'Instance of Response'
+    return apiResponse;
+  }
+
+  //Method to fetch movies from network
+  fetchMovies() async {
+    //Getting json 
+    var data = await getJson();
+
+    setState(() {
+      movies = data;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    //Fetch movies
+    fetchMovies();
+
+    return Scaffold(
+      //SingleChildScrollView to provide scrolling for flexible data rendering
+      body: SingleChildScrollView(
+        //Print API response on screen.
+        //RESULT: At this point only text 'instance of Response' will be printed
+        child: movies != null
+            ? Text("TMDB Api response\n $movies")
+            : Text("Loading api response"),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print, camel_case_types, non_constant_identifier_names, must_be_immutable, use_key_in_widget_constructors, constant_identifier_names
+
+/*import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(  AmelApp());
@@ -9,8 +98,21 @@ void main() {
 
 String english = "Salut Amel !";
 String spanish = "Salut Hocine heey";
+enum themes {Dark  ,Light}
+//! my key to the REST 
+final apiKey = "0e9a3d18a99c8161655558232ff57d93";
+final apiEndPoint =
+"http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc";
+
+class AmelApp extends StatefulWidget {
+  @override
+  _ContactProfilePageState createState() => _ContactProfilePageState();
+}
 @override
-class AmelApp extends StatelessWidget{
+class _ContactProfilePageState extends State<AmelApp> {
+  var current_theme = themes.Light;
+
+  
 
 
   //Dephault greeting is in english
@@ -24,7 +126,14 @@ Widget build(BuildContext context){
     //! the local : we use child : Theme(.....) then add child: ProfileActionItems(),
 
    
-    theme : MyAppTheme.apptheme(),
+      theme : 
+      current_theme == themes.Light
+      ? MyAppTheme.appthemedark()
+      : MyAppTheme.appthemeLight(),
+      //! we will add the botton of changing themes in th end after the body
+           
+        
+        
     home: Scaffold(
       appBar: AppBar(
        
@@ -137,6 +246,21 @@ Widget build(BuildContext context){
         )
       ],
       ),
+ floatingActionButton: FloatingActionButton(
+          onPressed: () {  },
+          child: IconButton(
+            icon: Icon(Icons.threesixty),
+            onPressed: () {
+              setState(() {
+                
+                //NEW CODE: Currently selected theme toggles when FAB is pressed
+                current_theme== themes.Dark
+                    ? current_theme = themes.Light
+                    : current_theme = themes.Dark;
+              });
+            },
+          ),
+        ),
        
       ),
     
@@ -165,7 +289,7 @@ Widget buildCallButton(){
     ],
   );
 }
-//*Adding the buildTextButton
+//Adding the buildTextButton
 Widget buildTextButton(){
 
   return Column(
@@ -183,7 +307,7 @@ Widget buildTextButton(){
   );
 }
 
-//*Adding the buildVideoCallButton
+//Adding the buildVideoCallButton
 Widget buildVideoCallButton(){
   return Column(
     children: <Widget>[
@@ -200,7 +324,7 @@ Widget buildVideoCallButton(){
   );
 }
 
-//*Adding the buildEmailButton
+//Adding the buildEmailButton
 Widget buildEmailButton(){
   return Column(
     children: <Widget>[
@@ -217,7 +341,7 @@ Widget buildEmailButton(){
   );
 }
 
-//*Adding the buildDirectionButton
+//Adding the buildDirectionButton
 Widget buildDirectionButton(){
   return Column(
     children: <Widget>[
@@ -234,7 +358,7 @@ Widget buildDirectionButton(){
   );
 }
 
-//*Adding the buildPayButton
+//Adding the buildPayButton
 Widget buildPayButton(){
   return Column(
     children: <Widget>[
@@ -251,7 +375,7 @@ Widget buildPayButton(){
   );
 }
 
-//*the phone list number
+//the phone list number
 Widget otherPhoneListTile(){
   return ListTile(
     leading: Text(""),
@@ -293,12 +417,12 @@ Widget AdressListTile(){
     subtitle: Text("Home"),
     trailing: IconButton(
       onPressed: (){},
-       icon: Icon(Icons.message),
+       icon: Icon(Icons.directions),
        color: Colors.indigo.shade500,
        )
   );
 }
-//*Adding the theme of the body
+//Adding the theme of the body
 class MyAppTheme{
   static ThemeData apptheme(){
   
@@ -306,7 +430,7 @@ class MyAppTheme{
        //NEW CODE: theme property to set the global theme
       
         // Define the default brightness and colors for the overall app.
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         appBarTheme: AppBarTheme(
           //CHALLENGE: Try a different color
            backgroundColor: Colors.purple,
@@ -321,7 +445,31 @@ class MyAppTheme{
     
     );
   }
+  //Adding the light and dark themes
+  static ThemeData appthemeLight(){
+    return ThemeData(
+      floatingActionButtonTheme : FloatingActionButtonThemeData(
+        //white backgroundColor
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      )
+    );
+  }
+    static ThemeData appthemedark(){
+    return ThemeData(
+       floatingActionButtonTheme : FloatingActionButtonThemeData(
+        //white backgroundColor
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+      )
+    );
+  }
 }
+
+
+
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -407,3 +555,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+*/
