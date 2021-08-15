@@ -30,27 +30,15 @@ class _MoviesListingState extends State<MoviesListing> {
   
   //Variable to hold movies information
   var movies;
-
-  //NOTE: Method to make http requests
-  static dynamic getJson() async {
-    
-    //URL to fetch movies information
-    final apiEndPoint =
-        "http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc";
-    final apiResponse = await http.get(apiEndPoint);
-    //'Instance of Response'
-    return apiResponse;
-  }
-
-  //Method to fetch movies from network
-  fetchMovies() async {
-    //Getting json 
-    var data = await getJson();
-
+  //methos to fetch movies
+  fetchMovies() async{
+    var data = await MoviesProvider.getJson();
     setState(() {
-      movies = data;
+      movies = data['results'];
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,17 +48,39 @@ class _MoviesListingState extends State<MoviesListing> {
 
     return Scaffold(
       //SingleChildScrollView to provide scrolling for flexible data rendering
-      body: SingleChildScrollView(
-        //Print API response on screen.
-        //RESULT: At this point only text 'instance of Response' will be printed
-        child: movies != null
-            ? Text("TMDB Api response\n $movies")
-            : Text("Loading api response"),
+    body: ListView.builder(
+        itemCount: movies == null ? 0 : movies.length,
+        itemBuilder: (context, index) {
+          
+          return Padding(
+            //Adding padding around the list row
+            padding: const EdgeInsets.all(8.0),
+
+            //Displaying title of the movie only for now
+            child: Text(movies[index]["title"]),
+          );
+        },
       ),
+      //E,
     );
   }
 }
 
+
+//*adding the classe that  have the method that returns a Futur object of the results in a json format
+class MoviesProvider{
+
+  static final String imagePathPrefix = 'https://image.tmdb.org/t/p/w500/';
+  static Future<Map> getJson() async{
+  final apiKey="0e9a3d18a99c8161655558232ff57d93";
+  final   apiEndPoint =
+       "http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc";
+  //using the await to wait until the data is available
+  final apiResponse = await http.get(apiEndPoint);
+  return json.decode(apiResponse.body);
+  }
+
+}
 
 
 
