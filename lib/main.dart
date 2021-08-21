@@ -19,7 +19,8 @@ class  MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp>{
  
   var _questionindex = 0;
-     void _answer (){
+
+     void _answerQuestion (){
        setState(() {
             _questionindex ++;
        });
@@ -30,8 +31,10 @@ class _MyAppState extends State<MyApp>{
   @override
   Widget  build( BuildContext  context){
     var questions = [
-      "what is your favorite calor",
-      "what is your favorite animal",
+    "what is your favorite calor",
+     "what is your favorite animal",
+     
+     
     ];
  
     return  MaterialApp( 
@@ -45,13 +48,12 @@ class _MyAppState extends State<MyApp>{
             children :  <Widget>[
 
               Question(
-                questions[_questionindex],
+                questions[_questionindex] ,
               ),
-            Answer(),
-            Answer(),
-            Answer(),
-
-
+              Answer(_answerQuestion),
+              Answer(_answerQuestion),
+              Answer(_answerQuestion),
+   
 
             ]
           )
