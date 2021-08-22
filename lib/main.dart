@@ -21,17 +21,18 @@ class  MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp>{
  
   var _questionindex = 0;
+ 
 
      void _answerQuestion (){
-       if(_questionindex < questions.length){
+      
            setState(() {
             _questionindex ++;
        });
+   
 
-       }
-       else{
+      
 
-       }
+      
      
        
       
@@ -42,15 +43,20 @@ class _MyAppState extends State<MyApp>{
 
       //? we use const before the list to make it never change and before the object to not change it 
       {'questionText':  "what is your favorite calor ?",
-        'answers': ['red', 'blue', 'green',]
+        'answers': [
+            'red', 'blue',  'green']
       },
 
      {'questionText':  "what is your favorite animal ?",
-        'answers': ['rabbit', 'bird', 'elephant','lion','cat']
+        'answers': [
+         'rabbit',  'cat',  'dog', 
+          ]
       },
 
         {'questionText':  "what is your favorite indtractor ?",
-        'answers': ['max', 'max', 'max']
+        'answers': [
+      'max',    'medium',  'min', 
+        ]
       }
     ];
 

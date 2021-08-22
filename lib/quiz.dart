@@ -29,7 +29,7 @@ class Quiz  extends StatelessWidget {
               ),
               //adding the values of a list to the list of children
               ...(questions[questionIndex]['answers'] as List<String>).map((answer){
-                return Answer  (  answerQuestion , answer);
+                return Answer    ( answerQuestion , answer);
               }).toList()
              
    
