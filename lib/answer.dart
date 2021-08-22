@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
   final VoidCallback selecthandler;
-  const Answer (this.selecthandler);
+  final String answerText;
+  const Answer (this.selecthandler, this.answerText);
   
 
   
@@ -18,9 +19,9 @@ class Answer extends StatelessWidget {
      
       child : RaisedButton(
       
-        child: Text( "pink"),
+        child: Text( answerText),
          textColor: Colors.white,
-        color : Colors.red,
+        color : Colors.lightBlue,
        
         onPressed: selecthandler,
 

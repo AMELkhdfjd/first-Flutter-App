@@ -31,10 +31,17 @@ class _MyAppState extends State<MyApp>{
   @override
   Widget  build( BuildContext  context){
     var questions = [
-    "what is your favorite calor",
-     "what is your favorite animal",
-     
-     
+      {'questionText':  "what is your favorite calor ?",
+        'answers': ['red', 'blue', 'green',]
+      },
+
+     {'questionText':  "what is your favorite animal ?",
+        'answers': ['rabbit', 'bird', 'elephant','lion','cat']
+      },
+
+        {'questionText':  "what is your favorite indtractor ?",
+        'answers': ['max', 'max', 'max']
+      }
     ];
  
     return  MaterialApp( 
@@ -48,14 +55,17 @@ class _MyAppState extends State<MyApp>{
             children :  <Widget>[
 
               Question(
-                questions[_questionindex] ,
+                //? add the "as String" to specify that we have a list of strings not objects
+                (questions[_questionindex]['questionText'] ) as String,
               ),
-              Answer(_answerQuestion),
-              Answer(_answerQuestion),
-              Answer(_answerQuestion),
+              //adding the values of a list to the list of children
+              ...(questions[_questionindex]['answers'] as List<String>).map((answer){
+                return Answer  (  _answerQuestion , answer);
+              }).toList()
+             
    
 
-            ]
+            ],
           )
         )
     
